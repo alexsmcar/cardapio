@@ -1,0 +1,39 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.cardapioContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.descricao {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.descricao h3 {
+    color: var(--cinzaEscuro2);
+}
+
+.descricao p {
+    color: var(--cinzaEscuro2);
+    font-size: .85rem;
+}
+
+.descricao span {
+    color: var(--vermelhoClaro);
+    font-weight: 700;
+}
+
+.img {
+    border-radius: 5px;
+    width: 100px;
+}

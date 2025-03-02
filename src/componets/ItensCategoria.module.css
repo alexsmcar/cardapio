@@ -1,0 +1,13 @@
+.container {
+    margin-top: 20px;
+}
+.categoria {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 8px 15px;
+    background: #f7f7f7;
+}
+
+.categoriaContainer + .categoriaContainer {
+    margin-top: 8px;
+}
