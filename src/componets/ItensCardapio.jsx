@@ -13,7 +13,7 @@ function ItensCardapio({ itens, status }) {
   }
 
   return (
-    <div className={`${style.container}`}>
+    <div className={`${style.container} ${status ? style.active : ""}`}>
       {itens.map(({id, ...el}) => {
         return <div key={id} className={style.cardapioContainer}>
           <div className={style.descricao}>
