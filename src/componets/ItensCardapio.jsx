@@ -1,7 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import style from "./ItensCardapio.module.css";
+import ModalCardapio from "./modalCardapio/ModalCardapio";
 
 function ItensCardapio({ itens, status }) {
+  const [modal, setModal] = useState(false);
+  const [cardapio, setCardapio] = useState("");
+
   const format = new Intl.NumberFormat("pt-BR",{
     style: "currency",
     currency: "BRL",
@@ -12,10 +16,16 @@ function ItensCardapio({ itens, status }) {
     return format.format(value)
   }
 
+  function handleClick(id) {
+    setModal(true);
+    setCardapio(itens[id])
+  }
+
+
   return (
     <div className={`${style.container} ${status ? style.active : ""}`}>
-      {itens.map(({id, ...el}) => {
-        return <div key={id} className={style.cardapioContainer}>
+      {itens.map((el, index) => {
+        return <div key={el.id} className={style.cardapioContainer} onClick={()=>handleClick(index)}>
           <div className={style.descricao}>
             <h3>{el.nome}</h3>
             <p>{el.descricao}</p>
@@ -24,8 +34,9 @@ function ItensCardapio({ itens, status }) {
           <div>
             <img className={style.img} src={el.img} alt={el.nome}></img>
           </div>
-        </div>;
+        </div>
       })}
+      {modal && <ModalCardapio item={cardapio} setModal={setModal} formatValue={formatValue} />}
     </div>
   );
 }
