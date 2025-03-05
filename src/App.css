@@ -8,6 +8,10 @@ img {
   max-width: 100%;
 }
 
+.input {
+  font-family: inherit;
+}
+
 h1,h2,h3 {
   margin: 0px;
 }

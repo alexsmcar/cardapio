@@ -16,7 +16,6 @@ function ModalCardapio({ item, setModal, formatValue }) {
           </button>
           <p>Detalhes</p>
         </div>
-        <div className={style.conteudoPrincipal}>
         <div className={style.infoItem}>
           <div className={style.imgContainer}>
             <img
@@ -31,8 +30,7 @@ function ModalCardapio({ item, setModal, formatValue }) {
             <p className={style.descricao}>{item.descricao}</p>
           </div>
         </div>
-        <Adicionais adicionais={item.adicionais} />
-        </div>
+        <Adicionais adicionais={item.adicionais} item={item} formatValue={formatValue} />
       </div>
     </div>
   );

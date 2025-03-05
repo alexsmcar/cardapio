@@ -1,4 +1,63 @@
-.input {
-    width: 100%;
+.inputContainer {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 0 10px 10px 10px;
 }
 
+.input {
+    flex: 1;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 2px solid var(--cinzaBorda);
+    padding: 5px 8px;
+    transition: .3s;
+}
+
+.input:focus,
+.input:hover {
+    outline: none;
+    border-color: transparent;
+    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.2);;
+}
+
+.adicionaisContainer {
+    border: 2px solid var(--cinzaBorda);
+
+}
+
+.adicionais {
+    display: flex;
+    padding: 10px;
+}
+
+.addInfo {
+    flex: 1;
+}
+
+.addItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.addItem button {
+    font-size: 1.2rem;
+    font-weight: 500;
+
+}
+
+
+.adicionais + .adicionais {
+    border-top: 2px solid var(--cinzaBorda);
+}
+
+.nome {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.preco {
+    font-size: .85rem;
+    color: var(--cinzaEscuro1);
+}

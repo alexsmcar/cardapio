@@ -250,7 +250,7 @@
     "itens": [
       {
         "id": 9,
-        "nome": "Refrigerante Lata",
+        "nome": "Coca-Cola Refrigerante Lata",
         "descricao": "Coca-Cola.",
         "img": "../src/assets/img/coca.jpg" ,
         "preco": 6.00,
@@ -258,7 +258,7 @@
       },
       {
         "id": 10,
-        "nome": "Refrigerante Lata",
+        "nome": "Guaraná Refrigerante Lata",
         "descricao": "Guaraná.",
         "img": "../src/assets/img/guarana.jpg" ,
         "preco": 6.00,
@@ -266,7 +266,7 @@
       },
       {
         "id": 11,
-        "nome": "Refrigerante 2l",
+        "nome": "Coca-Cola Refrigerante 2l",
         "descricao": "Coca-Cola.",
         "img": "../src/assets/img/coca-2l.jpg" ,
         "preco": 12.00,
@@ -274,7 +274,7 @@
       },
       {
         "id": 12,
-        "nome": "Refrigerante 2l",
+        "nome": "Guaraná Refrigerante 2l",
         "descricao": "Guaraná.",
         "img": "../src/assets/img/guarana-2l.jpg" ,
         "preco": 12.00,
@@ -282,7 +282,7 @@
       },
       {
         "id": 13,
-        "nome": "Água com gás",
+        "nome": "Agua com gás",
         "descricao": "Água com gás.",
         "img": "../src/assets/img/agua.jpg" ,
         "preco": 4.00,
@@ -290,7 +290,7 @@
       },
       {
         "id": 14,
-        "nome": "Água sem gás",
+        "nome": "Agua sem gás",
         "descricao": "Água sem gás.",
         "img": "../src/assets/img/agua.jpg" ,
         "preco": 4.00,
