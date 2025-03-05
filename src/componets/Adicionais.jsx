@@ -4,28 +4,36 @@ import Pesquisa from "../compentes-icons/Pesquisa";
 import Adicionar from "../compentes-icons/Adicionar";
 import Remover from "../compentes-icons/Remover";
 
-function Adicionais({ item, formatValue }) {
+function Adicionais({ item, formatValue, qtd, setQtd, setValor, qtdItem }) {
   const [value, setValue] = useState("");
   const [adicionais, setAdicionais] = useState([]);
-  const [qtd, setQtd] = useState({})
+  const [obs, setObs] = useState("");
 
-  function diminuir(id) {
+  function diminuir(id, preco) {
     setQtd((prev) => {
       return {
         ...prev,
-        [id]: prev[id] > 0 ? prev[id] - 1 : 0
-      }
+        [id]: prev[id] > 0 ? prev[id] - 1 : 0,
+      };
+    });
+    setValor((prev) => {
+      return qtd[id] > 0 ? prev - preco : prev;
     })
   }
 
-  function aumentar(id) {
+  function aumentar(id, preco) {
     setQtd((prev) => {
       return {
         ...prev,
-        [id]: prev[id] + 1
-      }
+        [id]: prev[id] + 1,
+      };
+    });
+    setValor((prev) => {
+      console.log()
+      return (prev + preco) * qtdItem
     })
   }
+
   useEffect(() => {
     if (value) {
       const add = item.adicionais.filter((prev) => {
@@ -40,53 +48,48 @@ function Adicionais({ item, formatValue }) {
     }
   }, [value]);
 
-  useEffect(() => {
-    const value = adicionais.reduce((prev, item) => {
-      return {
-        ...prev,
-        [item.id]: 0,
-      }
-    },{})
-    setQtd(value)
-
-  },[adicionais])
-
-  console.log(qtd)
 
   return (
     <div>
-      <div className={style.inputContainer}>
-        <input
-          className={style.input}
-          value={value}
-          onChange={({ target }) => setValue(target.value)}
-          autoComplete="off"
-          autoCorrect="off"
-          placeholder="Buscar adicional..."
-        />
-        <Pesquisa size={"18px"} fill={"var(--vermelho)"} />
+      <div>
+        <h2 className={style.mensagemAdd}>Deseja algum adicional?</h2>
+        <div className={style.inputContainer}>
+          <input
+            className={style.input}
+            value={value}
+            onChange={({ target }) => setValue(target.value)}
+            autoComplete="off"
+            autoCorrect="off"
+            placeholder="Buscar adicional..."
+          />
+          <Pesquisa size={"18px"} fill={"var(--vermelho)"} />
+        </div>
       </div>
       <div className={style.adicionaisContainer}>
         {adicionais.map((adicional) => (
           <div key={adicional.id} className={style.adicionais}>
             <div className={style.addInfo}>
-              <h2 className={style.nome}>{adicional.nome}</h2>
+              <h3 className={style.nome}>{adicional.nome}</h3>
               <p className={style.preco}>{`(+ ${formatValue(
                 adicional.preco
               )})`}</p>
             </div>
             <div className={style.addItem}>
-              <button onClick={() => diminuir(adicional.id)}>
-                <Remover size={"20px"} fill={"var(--cinzaEscuro1)"}/>
+              <button onClick={() => diminuir(adicional.id, adicional.preco)}>
+                <Remover size={"20px"} fill={"var(--cinzaEscuro1)"} />
               </button>
               <button>{qtd[adicional.id]}</button>
-              <button onClick={() => aumentar(adicional.id)}>
+              <button onClick={() => aumentar(adicional.id, adicional.preco)}>
                 <Adicionar size={"20px"} fill={"var(--vermelho)"} />
               </button>
             </div>
           </div>
         ))}
       </div>
+      <div className={style.obsContainer}>
+          <h2>Alguma observação?</h2>
+          <textarea placeholder="Ex: sem cebola, tomate, etc..." rows="4" className={style.obs} onChange={({target}) => setObs(target.value) }>{obs}</textarea>
+        </div>
     </div>
   );
 }

@@ -5,6 +5,10 @@
     padding: 0 10px 10px 10px;
 }
 
+.mensagemAdd {
+    padding: 10px;
+}
+
 .input {
     flex: 1;
     font-size: 1rem;
@@ -18,7 +22,7 @@
 .input:hover {
     outline: none;
     border-color: transparent;
-    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.2);;
+    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.2);
 }
 
 .adicionaisContainer {
@@ -61,3 +65,26 @@
     font-size: .85rem;
     color: var(--cinzaEscuro1);
 }
+
+.obsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 10px;
+  }
+  
+  .obs {
+    border: 2px solid var(--cinzaBorda);
+    border-radius: 8px;
+    resize: none;
+    padding: 5px;
+    transition: 0.3s;
+    font-family: inherit;
+  }
+  
+  .obs:focus,
+  .obs:hover {
+    outline: none;
+    border-color: transparent;
+    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.2);
+  }

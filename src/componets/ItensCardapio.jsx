@@ -5,6 +5,12 @@ import ModalCardapio from "./modalCardapio/ModalCardapio";
 function ItensCardapio({ itens, status }) {
   const [modal, setModal] = useState(false);
   const [cardapio, setCardapio] = useState("");
+  const body = document.body;
+  if(modal) {
+    body.style.overflow = "hidden";
+  } else {
+    body.style.overflow = "";
+  }
 
   const format = new Intl.NumberFormat("pt-BR",{
     style: "currency",
