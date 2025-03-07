@@ -10,24 +10,16 @@ function ModalCardapio({ item, setModal, formatValue }) {
     if (target === currentTarget) setModal(false);
   }
 
+  const [qtd, setQtd] = useState({});
+  const [valor, setValor] = useState(item.preco);
+
   function aumentarItem() {
-    setQtdItem((prev) => {
-      setValor((prev) => prev + item.preco);
-      return prev + 1;
-    });
+    setValor((prev) => prev + prev);
   }
 
   function diminuirItem() {
-    setQtdItem((prev) => {
-      setValor((prev) => (prev === item.preco ? item.preco : prev - item.preco));
-      return (prev > 1 ? prev -1 : 1)
-
-    });
+    setValor((prev) => (prev === item.preco ? item.preco : prev - prev));
   }
-
-  const [qtd, setQtd] = useState({});
-  const [valor, setValor] = useState(item.preco);
-  const [qtdItem, setQtdItem] = useState(1);
 
   useEffect(() => {
     const value = item.adicionais.reduce((prev, item) => {
@@ -70,25 +62,13 @@ function ModalCardapio({ item, setModal, formatValue }) {
             qtd={qtd}
             setQtd={setQtd}
             setValor={setValor}
-            qtdItem={qtdItem}
           />
         ) : null}
         <div className={style.addCarrinhoContainer}>
-          <div className={style.addCarrinho}>
-            <button onClick={diminuirItem}>
-              <Remover size={"20px"} fill={"var(--cinzaEscuro1)"} />
-            </button>
-            <button>{qtdItem}</button>
-            <button onClick={aumentarItem}>
-              <Adicionar size={"20px"} fill={"var(--vermelho)"} />
-            </button>
-          </div>
-          <div className={style.btnAdicionarContainer}>
-            <button className={style.btnAdicionar}>
-              <span>Adicionar</span>
-              <span>{formatValue(valor)}</span>
-            </button>
-          </div>
+          <button className={style.btnAdicionar}>
+            <span>Adicionar</span>
+            <span>{formatValue(valor)}</span>
+          </button>
         </div>
       </div>
     </div>

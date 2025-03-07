@@ -4,7 +4,7 @@ import Pesquisa from "../compentes-icons/Pesquisa";
 import Adicionar from "../compentes-icons/Adicionar";
 import Remover from "../compentes-icons/Remover";
 
-function Adicionais({ item, formatValue, qtd, setQtd, setValor, qtdItem }) {
+function Adicionais({ item, formatValue, qtd, setQtd, setValor }) {
   const [value, setValue] = useState("");
   const [adicionais, setAdicionais] = useState([]);
   const [obs, setObs] = useState("");
@@ -30,7 +30,7 @@ function Adicionais({ item, formatValue, qtd, setQtd, setValor, qtdItem }) {
     });
     setValor((prev) => {
       console.log()
-      return (prev + preco) * qtdItem
+      return (prev + preco)
     })
   }
 
@@ -51,8 +51,8 @@ function Adicionais({ item, formatValue, qtd, setQtd, setValor, qtdItem }) {
 
   return (
     <div>
-      <div>
-        <h2 className={style.mensagemAdd}>Deseja algum adicional?</h2>
+      <div className={style.containerAdicional}>
+        <h2>Deseja algum adicional?</h2>
         <div className={style.inputContainer}>
           <input
             className={style.input}

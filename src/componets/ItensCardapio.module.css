@@ -1,12 +1,15 @@
 .container {
-    display: none;
+    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-    margin-top: 10px;
+    margin: 5px 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: .3s;
 }
 
 .container.active {
-    display: grid;
+    max-height: 800px;
 }
 
 .cardapioContainer {
@@ -19,13 +22,6 @@
     cursor: pointer;
     transition: .3s;
 }
-
-.cardapioContainer:hover {
-    border-color: transparent;
-    box-shadow: 0 5px 5px 2px rgba(0, 0, 0, 0.2);
-}
-
-
 
 .descricao {
     display: flex;

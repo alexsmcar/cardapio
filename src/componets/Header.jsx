@@ -10,7 +10,7 @@ function Header() {
         <div className={style.header}>
             <div className={style.logoContainer}>
                 <img src={Logo} alt='logo' />
-                <p>Hamburgueria dos guri</p>
+                <p>Hamburgueria</p>
             </div>
             <Menu />
         </div>
