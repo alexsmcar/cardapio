@@ -2,11 +2,34 @@ import React, { useEffect, useState } from "react";
 import style from "./ModalCardapio.module.css";
 import Seta from "../../compentes-icons/seta";
 import Adicionais from "../Adicionais";
+import Remover from "../../compentes-icons/Remover";
+import Adicionar from "../../compentes-icons/Adicionar";
 
 function ModalCardapio({ item, setModal, formatValue }) {
   function handleClick({ target, currentTarget }) {
     if (target === currentTarget) setModal(false);
   }
+
+  const [qtd, setQtd] = useState({});
+  const [valor, setValor] = useState(item.preco);
+
+  function aumentarItem() {
+    setValor((prev) => prev + prev);
+  }
+
+  function diminuirItem() {
+    setValor((prev) => (prev === item.preco ? item.preco : prev - prev));
+  }
+
+  useEffect(() => {
+    const value = item.adicionais.reduce((prev, item) => {
+      return {
+        ...prev,
+        [item.id]: 0,
+      };
+    }, {});
+    setQtd(value);
+  }, []);
 
   return (
     <div className={style.container} onClick={handleClick}>
@@ -31,11 +54,22 @@ function ModalCardapio({ item, setModal, formatValue }) {
             <p className={style.descricao}>{item.descricao}</p>
           </div>
         </div>
-        <Adicionais
-          adicionais={item.adicionais}
-          item={item}
-          formatValue={formatValue}
-        />
+        {item.adicionais.length > 0 ? (
+          <Adicionais
+            adicionais={item.adicionais}
+            item={item}
+            formatValue={formatValue}
+            qtd={qtd}
+            setQtd={setQtd}
+            setValor={setValor}
+          />
+        ) : null}
+        <div className={style.addCarrinhoContainer}>
+          <button className={style.btnAdicionar}>
+            <span>Adicionar</span>
+            <span>{formatValue(valor)}</span>
+          </button>
+        </div>
       </div>
     </div>
   );
