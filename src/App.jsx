@@ -8,14 +8,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
-      <CarrinhoStorage>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Main />} />
-        </Routes>
-      </CarrinhoStorage>
-    </BrowserRouter>
+    <CarrinhoStorage>
+      <Header />
+      <Main />
+    </CarrinhoStorage>
   );
 }
 
