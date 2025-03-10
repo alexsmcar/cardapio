@@ -3,11 +3,14 @@ import style from "./Adicionais.module.css";
 import Pesquisa from "../compentes-icons/Pesquisa";
 import Adicionar from "../compentes-icons/Adicionar";
 import Remover from "../compentes-icons/Remover";
+import BtnAdicionar from "./BtnAdicionar";
 
-function Adicionais({ item, formatValue, qtd, setQtd, setValor }) {
+function Adicionais({ item, formatValue }) {
   const [value, setValue] = useState("");
+  const [valor, setValor] = useState(item.preco);
   const [adicionais, setAdicionais] = useState([]);
   const [obs, setObs] = useState("");
+  const [qtd, setQtd] = useState({});
 
   function diminuir(id, preco) {
     setQtd((prev) => {
@@ -18,7 +21,7 @@ function Adicionais({ item, formatValue, qtd, setQtd, setValor }) {
     });
     setValor((prev) => {
       return qtd[id] > 0 ? prev - preco : prev;
-    })
+    });
   }
 
   function aumentar(id, preco) {
@@ -29,15 +32,13 @@ function Adicionais({ item, formatValue, qtd, setQtd, setValor }) {
       };
     });
     setValor((prev) => {
-      console.log()
-      return (prev + preco)
-    })
+      return prev + preco;
+    });
   }
 
   useEffect(() => {
     if (value) {
       const add = item.adicionais.filter((prev) => {
-        console.log;
         if (prev.nome.toLowerCase().includes(value.toLowerCase())) {
           return prev;
         }
@@ -48,7 +49,37 @@ function Adicionais({ item, formatValue, qtd, setQtd, setValor }) {
     }
   }, [value]);
 
+  useEffect(() => {
+    const value = item.adicionais.reduce((prev, item) => {
+      return {
+        ...prev,
+        [item.id]: 0,
+      };
+    }, {});
+    setQtd(value);
+  }, []);
 
+  let totalAdicionais = [];
+  for (let chave in qtd) {
+    if (qtd[chave] > 0) {
+      const nomeAdicional = item.adicionais.find((add) => add.id === +chave);
+      totalAdicionais.push({
+        adicional: nomeAdicional.nome,
+        quantidade: qtd[chave],
+      });
+    }
+  }
+
+  if (item.adicionais.length < 1)
+    return (
+      <BtnAdicionar
+        valor={valor}
+        formatValue={formatValue}
+        nomeItem={item.nome}
+        img={item.img}
+        totalAdicionais={[]}
+      />
+    );
   return (
     <div>
       <div className={style.containerAdicional}>
@@ -87,9 +118,24 @@ function Adicionais({ item, formatValue, qtd, setQtd, setValor }) {
         ))}
       </div>
       <div className={style.obsContainer}>
-          <h2>Alguma observação?</h2>
-          <textarea placeholder="Ex: sem cebola, tomate, etc..." rows="4" className={style.obs} onChange={({target}) => setObs(target.value) }>{obs}</textarea>
-        </div>
+        <h2>Alguma observação?</h2>
+        <textarea
+          placeholder="Ex: sem cebola, tomate, etc..."
+          rows="4"
+          className={style.obs}
+          onChange={({ target }) => setObs(target.value)}
+        >
+          {obs}
+        </textarea>
+      </div>
+      <BtnAdicionar
+        valor={valor}
+        formatValue={formatValue}
+        nomeItem={item.nome}
+        img={item.img}
+        obs={obs}
+        totalAdicionais={totalAdicionais}
+      />
     </div>
   );
 }
